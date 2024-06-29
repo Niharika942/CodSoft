@@ -1,0 +1,49 @@
+#TO DO LIST
+#importing modules
+from tkinter import*
+from tkinter import messagebox
+#create functions
+def newtask():
+    task=my_entry.get()
+    if task !="":
+        lb.insert(END,task)
+        my_entry.delete(0,"end")
+    else:
+        messagebox.showwarning("warning","Please enter some task")
+def deleteTask():
+    lb.delete(ANCHOR)
+#configure and create main window
+ws=Tk()
+ws.geometry("750x550")
+ws.title("TO DO LIST")
+ws.config(bg="#223441")
+
+# creating widgets
+frame=Frame(ws)
+frame.pack(pady=10)
+lb=Listbox(frame,width=25,height=8,font=("Times",18),bd=0,fg='#464646',selectbackground='#a6a6a6',activestyle=None)
+lb.pack(side=LEFT,fill=BOTH)
+task_list=['WAKE UP','DRINK WATER','HAVE BATH','MEDITATE','WRITE JOURNAL','MAKE NOTES','BREAKFAST','GO OUT']
+for item in task_list:
+    lb.insert(END,item)
+sb=Scrollbar(frame)
+sb.pack(side=RIGHT,fill=BOTH)
+lb.config(yscrollcommand=sb.set)
+sb.config(command=lb.yview)
+my_entry=Entry(ws,font=('times',20))
+my_entry.pack(pady=20)
+buttonframe=Frame(ws)
+buttonframe.pack(pady=20)
+#add task button
+add_task=Button(buttonframe,text="Add Task",font=('times',14),bg="green",padx=20,pady=10,command=newtask)
+add_task.pack(fill=BOTH,expand=True,side=LEFT)
+#deleting a task button
+del_task=Button(buttonframe,text="Delete a Task",font=('times',14),bg="yellow",padx=20,pady=10,command=deleteTask)
+del_task.pack(fill=BOTH,expand=True,side=LEFT)
+#creating mainloop
+ws.mainloop()
+#deleting a task button
+del_task=Button(buttonframe,text="Delete a Task",font=('times',14),bg="yellow",padx=20,pady=10,command=deleteTask)
+del_task.pack(fill=BOTH,expand=True,side=LEFT)
+#creating mainloop
+ws.mainloop()
